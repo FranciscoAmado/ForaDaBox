@@ -1,0 +1,47 @@
+@import "../definition/colors.less";
+
+.profile {
+  width: 100%;
+
+  .box {
+    background-color: @white;
+    border-radius: 4px;
+    border: 1px solid @white;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    display: flex;
+    min-height: 350px;
+    overflow: hidden;
+
+    .left {
+      border-right: 1px solid @gray;
+      width: 33%;
+
+      span {
+        display: block;
+        border-bottom: 1px solid @gray;
+        color: @bloodOrange;
+        cursor: pointer;
+        padding: 10px 15px;
+        transition: background-color .1s ease-in-out, color .1s ease-in-out;
+
+        &:hover, &.active {
+          background-color: @bloodOrange;
+          color: @white;
+        }
+      }
+    }
+
+    .right {
+      padding: 15px 15px 60px;
+      position: relative;
+      width: 66%;
+
+      .confirm-area {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+        padding: 15px 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+@import "../definition/colors.less";
+
+.hero {
+
+  .header h1 {
+    color: @white;
+    font-size: 42px;
+    text-align: center;
+    margin: 33px 0 66px 0;
+  }
+
+  .box-link {
+
+    .body .quote {
+      font-style: italic;
+    }
+  }
+
+  .upcoming-meetup-wrapper {
+    color: @white;
+    padding-top: 15px;
+    width: 100%;
+
+    .upcoming-meetup {
+      background-color: @white;
+      border-radius: 4px;
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+      color: @black;
+      padding: 15px;
+      width: 100%;
+
+      .topics, .speakers {
+        padding-left: 18px;
+      }
+
+      .header {
+        margin-bottom: 5px;
+      }
+
+      h2 {
+        font-size: 14px;
+        font-weight: 700;
+        margin: 0 5px 0 0;
+        text-transform: uppercase;
+      }
+
+      h3 {
+        font-size: 20px;
+        padding-top: 5px;
+      }
+    }
+  }
+}
+
+/** TABLET */
+@import "../min768/Hero768.less";
