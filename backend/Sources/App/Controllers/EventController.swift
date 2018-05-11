@@ -4,7 +4,17 @@ import Vapor
 final class EventController {
     /// Returns a list of all `Event`s.
     func index(_ req: Request) throws -> Future<[Event]> {
-        return Event.query(on: req).all()
+        let date = Date.init()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+
+        let events: [Event] = [
+            Event(title: "Mobilidade", date: "2018/05/10", time: "18h00"),
+            Event(title: "Wod", date: dateFormatter.string(from: date), time: "18h45"),
+            Event(title: "Wod", date: "2018/05/10", time: "20h00")
+        ]
+
+        return Future.map(on: req) { events }
     }
 
     /// Saves a decoded `Event` to the database.

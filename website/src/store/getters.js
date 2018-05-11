@@ -19,6 +19,9 @@ export const getToken = state => state.token;
 /** returns the topic list */
 export const getTopicList = state => state.topicList;
 
+/** returns the topic list */
+export const getEventList = state => state.eventList;
+
 //pragma mark - Meetup
 
 export const getUpcomingMeetup = state => state.meetup;

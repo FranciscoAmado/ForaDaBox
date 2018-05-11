@@ -9,7 +9,8 @@ import 'vue-event-calendar/dist/style.css' //^1.1.10, CSS has been extracted as 
 import vueEventCalendar from 'vue-event-calendar'
 
 Vue.use(VeeValidate);
-Vue.use(vueEventCalendar, {locale: 'pt-br'}) // locale can be 'zh' , 'en' , 'es', 'pt-br', 'ja', 'ko', 'fr', 'it', 'ru', 'de', 'vi', 'ua'
+Vue.use(vueEventCalendar, {locale: 'pt-br'}) 
+// locale can be 'zh' , 'en' , 'es', 'pt-br', 'ja', 'ko', 'fr', 'it', 'ru', 'de', 'vi', 'ua'
 
 Vue.config.productionTip = false;
 

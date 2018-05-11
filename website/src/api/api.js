@@ -2,10 +2,12 @@ import axios from 'axios';
 import store from '../store/index';
 import router from '../router/index';
 
-//const BASE_URL = 'http://127.0.0.1:8020';
+const BASE_URL = 'http://localhost:8080';
 
 /** use for PRODUCTION */
-const BASE_URL = '';
+// const BASE_URL = '';
+
+const GET_URL_EVENT_LIST = BASE_URL + '/api/events';
 
 const POST_URL_LOGIN = BASE_URL + '/api/login';
 const POST_URL_LOGOUT = BASE_URL + '/api/logout';
@@ -22,6 +24,24 @@ const GET_URL_UPCOMING_MEETUP = BASE_URL + '/api/meetup/upcoming';
 axios.defaults.baseURL = BASE_URL;
 
 //pragma mark - user
+
+/**
+ * fetches topic list from api
+ */
+export function fetchEventList() {
+
+  axios
+    .get(GET_URL_EVENT_LIST)
+    .then(resp => {
+      console.log('Data count' + resp.data.length);
+      store.dispatch('setEventList', resp.data);
+    })
+    .catch(error => {
+      const normedResp = normResponse(error);
+      console.log('error', normedResp);
+    })
+  ;
+}
 
 /**
  *

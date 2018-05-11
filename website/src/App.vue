@@ -2,22 +2,26 @@
   <div id="app">
     <main class="vapor-app__content">
     <h1 class="t-center mt150">Fora da Box</h1>
-    <vue-event-calendar :events="demoEvents">
-      <template scope="props">
+    <vue-event-calendar 
+      :events="list"
+      :selectedDay=today>
+      <!-- <template scope="props"> -->
         <slot>
           <div v-for="(event, index) in events" class="event-item">
             <cal-event-item :event="event" :index="index" :locale="locale"></cal-event-item>
           </div>
         </slot>
-      </template>
+      <!-- </template> -->
     </vue-event-calendar>
     </main>
   </div>
 </template>
 
 <script>
+  import {fetchEventList} from './api/api'
+
   require('./assets/styles/css/bootstrap.min.css');
-  
+
   let today = new Date()
 
   export default {
@@ -25,29 +29,37 @@
     components: {},
     data () {
       return {
-        demoEvents: [{
-            date: `${today.getFullYear()}/${today.getMonth() + 1}/15`,
-            title: 'WOD',
-            time: '07h15',
-            desc: 'Chico; Nielsen; Gina'
-        },{
-            date: `${today.getFullYear()}/${today.getMonth() + 1}/24`,
-            title: 'Alongamentos',
-            time: '18h00',
-            desc: 'longlonglong description'
-        },{
-            date: `${today.getFullYear()}/${today.getMonth() + 1}/24`,
-            title: 'WOD',
-            time: '18h45',
-            desc: 'longlonglong description'
-        },{
-            date: `${today.getFullYear()}/${today.getMonth() === 11 ? 1 : today.getMonth() + 2}/06`,
-            title: 'WOD',
-            time: '20h15',
-            desc: 'longlonglong description'
-        }]
+        // demoEvents: [{
+        //     date: `${today.getFullYear()}/${today.getMonth() + 1}/15`,
+        //     title: 'WOD',
+        //     time: '07h15',
+        //     desc: 'Chico; Nielsen; Gina'
+        // },{
+        //     date: `${today.getFullYear()}/${today.getMonth() + 1}/24`,
+        //     title: 'Alongamentos',
+        //     time: '18h00',
+        //     desc: 'longlonglong description'
+        // },{
+        //     date: `${today.getFullYear()}/${today.getMonth() + 1}/24`,
+        //     title: 'WOD',
+        //     time: '18h45',
+        //     desc: 'longlonglong description'
+        // },{
+        //     date: `${today.getFullYear()}/${today.getMonth() === 11 ? 1 : today.getMonth() + 2}/06`,
+        //     title: 'WOD',
+        //     time: '20h15',
+        //     desc: 'longlonglong description'
+        // }]
       }
     },
+
+    computed: {
+      list() {
+        console.log("getEventList  " +this.$store.getters.getEventList);
+        return this.$store.getters.getEventList;
+      },
+    },
+
     methods: {
       handleDayChanged (data) {
         console.log('date-changed', data)
@@ -55,6 +67,10 @@
       handleMonthChanged (data) {
         console.log('month-changed', data)
       }
+    },
+    
+    mounted () {
+      fetchEventList();
     }
   }
 </script>

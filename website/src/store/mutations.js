@@ -43,6 +43,12 @@ export default {
     state.topicList = list;
   },
 
+  /** stores: topic list */
+  [types.SET_EVENT_LIST] (state, list) {
+    console.log("state.eventList")
+    state.eventList = list;
+  },
+
 // pragma mark - topic
 
   [types.SET_UPCOMING_MEETUP] (state, upcomingMeetup) {

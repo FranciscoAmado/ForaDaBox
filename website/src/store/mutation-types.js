@@ -18,6 +18,7 @@ export const CLEAR_TOKEN = 'clear_token';
 // pragma mark - topic
 
 export const SET_TOPIC_LIST = 'set_topic_list';
+export const SET_EVENT_LIST = 'set_event_list';
 
 // pragma mark - meetup
 

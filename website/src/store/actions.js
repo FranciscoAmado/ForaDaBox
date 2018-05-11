@@ -5,6 +5,11 @@ import * as types from './mutation-types'
  *  are a bridge used to mutate the state
  */
 
+ /** store: topic list */
+export const setEventList = (state, list) => {
+  state.commit(types.SET_EVENT_LIST, list);
+};
+
 //pragma mark - User
 
 /** store: user */
