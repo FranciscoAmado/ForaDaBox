@@ -5,13 +5,35 @@
     <vue-event-calendar 
       :events="list"
       :selectedDay=today>
-      <!-- <template scope="props"> -->
+      <!-- <template scope="props">
         <slot>
           <div v-for="(event, index) in events" class="event-item">
             <cal-event-item :event="event" :index="index" :locale="locale"></cal-event-item>
           </div>
         </slot>
-      <!-- </template> -->
+      </template> -->
+      <template scope="props">
+        <div v-for="(event, index) in props.showEvents" class="event-item">
+          <!-- In here do whatever you want, make you owner event template -->
+          <!-- {{event}} -->
+          <!-- <div class="wrapper"> -->
+            <!-- <p class="time">{{dateTimeFormatter(Date.parse(new Date(event.date)),i18n[locale].fullFormat)}}</p> -->
+            <!-- <p class="desc">{{event.desc}}</p> -->
+          <!-- </div> -->
+          <!-- <b-container fluid> -->
+            <b-row class="my-1">
+              <b-col><h2>{{event.time}} {{event.title}}</h2></b-col>
+              <b-col><h4 align="right">Vagas disponíveis: 8/10</h4></b-col>
+            </b-row>
+            <b-row class="my-1">
+              <b-col sm="9"><b-form-input v-model="text1" type="text" placeholder="Nome"></b-form-input></b-col>
+              <b-col sm="3" align="center"><b-button href="#">Inscrever</b-button></b-col>
+            </b-row>
+            <h4>Inscritos: </h4>
+            <h5>- Francisco Amado </h5>
+          <!-- </b-container> -->
+        </div>
+      </template>
     </vue-event-calendar>
     </main>
   </div>
@@ -28,29 +50,7 @@
     name: 'app',
     components: {},
     data () {
-      return {
-        // demoEvents: [{
-        //     date: `${today.getFullYear()}/${today.getMonth() + 1}/15`,
-        //     title: 'WOD',
-        //     time: '07h15',
-        //     desc: 'Chico; Nielsen; Gina'
-        // },{
-        //     date: `${today.getFullYear()}/${today.getMonth() + 1}/24`,
-        //     title: 'Alongamentos',
-        //     time: '18h00',
-        //     desc: 'longlonglong description'
-        // },{
-        //     date: `${today.getFullYear()}/${today.getMonth() + 1}/24`,
-        //     title: 'WOD',
-        //     time: '18h45',
-        //     desc: 'longlonglong description'
-        // },{
-        //     date: `${today.getFullYear()}/${today.getMonth() === 11 ? 1 : today.getMonth() + 2}/06`,
-        //     title: 'WOD',
-        //     time: '20h15',
-        //     desc: 'longlonglong description'
-        // }]
-      }
+      return {}
     },
 
     computed: {
