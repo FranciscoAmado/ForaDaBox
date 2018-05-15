@@ -1,11 +1,11 @@
-import FluentSQLite
+import FluentPostgreSQL
 import Vapor
-import Leaf
+//import Leaf
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
     /// Register providers first
-    try services.register(FluentSQLiteProvider())
+    try services.register(FluentPostgreSQLProvider())
 //    try services.register(LeafProvider())
 
     /// Register routes to the router
@@ -20,16 +20,42 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     services.register(middlewares)
 
     // Configure a SQLite database
-    let sqlite = try SQLiteDatabase(storage: .memory)
+//    let sqlite = try MySQLDatabase
 
     /// Register the configured SQLite database to the database config.
-    var databases = DatabasesConfig()
-    databases.add(database: sqlite, as: .sqlite)
-    services.register(databases)
+//    var databases = DatabasesConfig()
+//    databases.add(database: sqlite, as: .sqlite)
+//    services.register(databases)
 
-    /// Configure migrations
+//    /// Register custom MySQL Config
+//    let mysqlConfig = MySQLDatabaseConfig(hostname: "localhost", port: 3306, username: "vapor")
+//    services.register(mysqlConfig)
+
+//    var databases = DatabasesConfig()
+//    let database = PostgreSQLDatabase(config: PostgreSQLDatabaseConfig.default())
+//    databases.add(database: database, as: .psql)
+//    services.register(databases)
+
+    // Configure a database
+    var databases = DatabasesConfig()
+    let hostname = Environment.get("DATABASE_HOSTNAME") ?? "localhost"
+    let username = Environment.get("DATABASE_USER") ?? "vapor"
+    let databaseName = Environment.get("DATABASE_DB") ?? "vapor"
+    let password = Environment.get("DATABASE_PASSWORD") ?? "password"
+    let databaseConfig = PostgreSQLDatabaseConfig(
+        hostname: hostname,
+        username: username,
+        database: databaseName,
+        password: password
+    )
+    let database = PostgreSQLDatabase(config: databaseConfig)
+
+    databases.add(database: database, as: .psql)
+    services.register(databases)
+    
     var migrations = MigrationConfig()
-    migrations.add(model: Event.self, database: .sqlite)
+    migrations.add(model: Event.self, database: .psql)
+//    migrations.add(migration: EventSeed.self, database: .psql)
     services.register(migrations)
 
 //    config.prefer(LeafRenderer.self, for: ViewRenderer.self)

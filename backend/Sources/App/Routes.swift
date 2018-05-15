@@ -12,6 +12,7 @@ public func routes(_ router: Router) throws {
     // Example of configuring a controller
     let eventController = EventController()
     router.get("api/events", use: eventController.index)
-//    router.post("todos", use: todoController.create)
-//    router.delete("todos", Todo.parameter, use: todoController.delete)
+    router.post("api/events", use: eventController.create)
+    router.put("api/events", use: eventController.update)
+//    router.delete("api/events", Event.parameter, use: eventController.delete)
 }

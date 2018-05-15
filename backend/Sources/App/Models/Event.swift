@@ -1,8 +1,8 @@
-import FluentSQLite
+import FluentPostgreSQL
 import Vapor
 
 /// A single entry of a Calendar.
-final class Event: SQLiteModel {
+final class Event: Codable {
 
     /// The unique identifier for this `Event`.
     var id: Int?
@@ -21,6 +21,8 @@ final class Event: SQLiteModel {
     }
 }
 
+extension Event: PostgreSQLModel { }
+
 /// Allows `Event` to be used as a dynamic migration.
 extension Event: Migration { }
 
@@ -29,3 +31,20 @@ extension Event: Content { }
 
 /// Allows `Event` to be used as a dynamic parameter in route definitions.
 extension Event: Parameter { }
+
+struct EventSeed: Migration {
+
+    typealias Database = PostgreSQLDatabase
+
+    static func prepare(on connection: PostgreSQLConnection) -> Future<Void> {
+
+        let events = Seeder.events
+        
+        return events.map { $0.save(on: connection) }
+            .flatten(on: connection).transform(to: ())
+    }
+
+    static func revert(on connection: PostgreSQLConnection) -> Future<Void> {
+        return Future.map(on: connection) {}
+    }
+}
