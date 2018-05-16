@@ -17,6 +17,8 @@ class Seeder {
 
     static var events: [Event] {
 
+        let numberOfEvents = 50
+
         let dateFormatter: DateFormatter = {
 
             let formatter = DateFormatter()
@@ -41,7 +43,7 @@ class Seeder {
         }
 
         let calendar = Calendar.autoupdatingCurrent
-        let composedWods: [(type: Type, date: Date, time: String)] = [Int](0...10).flatMap {
+        let composedWods: [(type: Type, date: Date, time: String)] = [Int](0...numberOfEvents).flatMap {
             index -> [(type: Type, date: Date, time: String)] in
 
             return initialWods.compactMap { wod -> (type: Type, date: Date, time: String)? in
@@ -73,7 +75,7 @@ class Seeder {
         }()
 
         return composedWods.map { (type, date, time) -> Event in
-            return Event.init(title: type.rawValue, date: outputFormatter.string(from: date), time: time)
+            return Event.init(title: type.rawValue, date: outputFormatter.string(from: date), time: time, attendees: [])
         }
     }
 }

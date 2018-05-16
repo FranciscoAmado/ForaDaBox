@@ -38,10 +38,10 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
 
     // Configure a database
     var databases = DatabasesConfig()
-    let hostname = Environment.get("DATABASE_HOSTNAME") ?? "localhost"
-    let username = Environment.get("DATABASE_USER") ?? "vapor"
-    let databaseName = Environment.get("DATABASE_DB") ?? "vapor"
-    let password = Environment.get("DATABASE_PASSWORD") ?? "password"
+    let hostname = Environment.get("DATABASE_HOSTNAME") ?? "ec2-54-217-208-52.eu-west-1.compute.amazonaws.com"
+    let username = Environment.get("DATABASE_USER") ?? "bobyfiwcxbhybe"
+    let databaseName = Environment.get("DATABASE_DB") ?? "d3c9bvntsi6nvs"
+    let password = Environment.get("DATABASE_PASSWORD") ?? "45bf16d7df982b3f0028bc4d2d19a8bca7e0e8d442e62cf397028469d9d104e7"
     let databaseConfig = PostgreSQLDatabaseConfig(
         hostname: hostname,
         username: username,
@@ -55,7 +55,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     
     var migrations = MigrationConfig()
     migrations.add(model: Event.self, database: .psql)
-//    migrations.add(migration: EventSeed.self, database: .psql)
+    migrations.add(migration: EventSeed.self, database: .psql)
     services.register(migrations)
 
 //    config.prefer(LeafRenderer.self, for: ViewRenderer.self)

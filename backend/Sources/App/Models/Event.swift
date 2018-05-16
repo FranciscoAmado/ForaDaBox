@@ -6,18 +6,18 @@ final class Event: Codable {
 
     /// The unique identifier for this `Event`.
     var id: Int?
-    var title: String
-    var date: String
-    var time: String
-//    var attendees: [String]
+    var title: String?
+    var date: String?
+    var time: String?
+    var attendees: [String]?
 
     /// Creates a new `Event`.
-    init(id: Int? = nil, title: String, date: String, time: String) {
+    init(id: Int? = nil, title: String, date: String?, time: String?, attendees: [String] = []) {
         self.id = id
         self.title = title
         self.date = date
         self.time = time
-//        self.attendees = attendees
+        self.attendees = attendees
     }
 }
 

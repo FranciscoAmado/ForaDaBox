@@ -4,8 +4,7 @@ import Vapor
 final class EventController {
     /// Returns a list of all `Event`s.
     func index(_ req: Request) throws -> Future<[Event]> {
-
-        return Event.query(on: req).all()
+        return try Event.query(on: req).sort(\.id).all()
     }
 
     /// Saves a decoded `Event` to the database.
@@ -18,7 +17,7 @@ final class EventController {
     /// Updated a decoded `Event` to the database.
     func update(_ req: Request) throws -> Future<Event> {
         return try req.content.decode(Event.self).flatMap { event in
-            return event.save(on: req)
+            return event.update(on: req)
         }
     }
 

@@ -43,7 +43,7 @@ export default {
     state.topicList = list;
   },
 
-  /** stores: topic list */
+  /** stores: event list */
   [types.SET_EVENT_LIST] (state, list) {
     console.log("state.eventList")
     state.eventList = list;

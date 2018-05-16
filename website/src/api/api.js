@@ -8,6 +8,7 @@ const BASE_URL = 'http://localhost:8080';
 // const BASE_URL = '';
 
 const GET_URL_EVENT_LIST = BASE_URL + '/api/events';
+const PUT_URL_EVENT = BASE_URL + '/api/events';
 
 const POST_URL_LOGIN = BASE_URL + '/api/login';
 const POST_URL_LOGOUT = BASE_URL + '/api/logout';
@@ -29,7 +30,6 @@ axios.defaults.baseURL = BASE_URL;
  * fetches topic list from api
  */
 export function fetchEventList() {
-
   axios
     .get(GET_URL_EVENT_LIST)
     .then(resp => {
@@ -37,6 +37,22 @@ export function fetchEventList() {
       store.dispatch('setEventList', resp.data);
     })
     .catch(error => {
+      const normedResp = normResponse(error);
+      console.log('error', normedResp);
+    })
+  ;
+}
+
+/** patches Event */
+export function updateEvent(patchData, callback) {
+  axios
+    .patch(
+      PUT_URL_EVENT,
+      patchData
+    ).then(resp => {
+      const normedResp = normResponse(resp);
+      callback(normedResp)
+    }).catch(error => {
       const normedResp = normResponse(error);
       console.log('error', normedResp);
     })
