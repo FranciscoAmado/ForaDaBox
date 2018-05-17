@@ -44,11 +44,11 @@ export function fetchEventList() {
 }
 
 /** patches Event */
-export function updateEvent(patchData, callback) {
+export function updateEvent(data, callback) {
   axios
-    .patch(
+    .put(
       PUT_URL_EVENT,
-      patchData
+      data
     ).then(resp => {
       const normedResp = normResponse(resp);
       callback(normedResp)

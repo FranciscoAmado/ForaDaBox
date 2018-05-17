@@ -36,7 +36,7 @@
 
   require('./assets/styles/css/bootstrap.min.css');
 
-  let today = new Date()
+  let today = new Date();
 
   export default {
     name: 'app',
@@ -76,7 +76,8 @@
     },
     
     mounted () {
-      fetchEventList();
+      this.$EventCalendar.toDate(`${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`);
+      // fetchEventList();
     }
   }
 </script>
