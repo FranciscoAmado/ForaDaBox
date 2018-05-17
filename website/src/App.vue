@@ -41,14 +41,9 @@
   export default {
     name: 'app',
     components: {},
-    data () {
-      return {
-      }
-    },
-
     computed: {
       list() {
-        console.log("getEventList  " + this.$store.getters.getEventList);
+        console.log("computed.list");
         return this.$store.getters.getEventList;
       },
     },
@@ -74,10 +69,10 @@
         }
       }
     },
-    
+
     mounted () {
-      this.$EventCalendar.toDate(`${today.getFullYear()}/${today.getMonth() + 1}/${today.getDate()}`);
-      // fetchEventList();
+      fetchEventList();
+      console.log("mounted");
     }
   }
 </script>

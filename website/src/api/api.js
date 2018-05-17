@@ -2,10 +2,10 @@ import axios from 'axios';
 import store from '../store/index';
 import router from '../router/index';
 
-const BASE_URL = 'http://localhost:8080';
+// const BASE_URL = 'http://localhost:8080';
 
 /** use for PRODUCTION */
-// const BASE_URL = '';
+const BASE_URL = '';
 
 const GET_URL_EVENT_LIST = BASE_URL + '/api/events';
 const PUT_URL_EVENT = BASE_URL + '/api/events';
@@ -29,12 +29,13 @@ axios.defaults.baseURL = BASE_URL;
 /**
  * fetches topic list from api
  */
-export function fetchEventList() {
+export function fetchEventList(callback) {
   axios
     .get(GET_URL_EVENT_LIST)
     .then(resp => {
       console.log('Data count' + resp.data.length);
       store.dispatch('setEventList', resp.data);
+      callback(resp.data);
     })
     .catch(error => {
       const normedResp = normResponse(error);

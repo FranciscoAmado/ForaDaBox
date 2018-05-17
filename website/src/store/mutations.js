@@ -45,7 +45,7 @@ export default {
 
   /** stores: event list */
   [types.SET_EVENT_LIST] (state, list) {
-    console.log("state.eventList")
+    console.log("state.eventList");
     state.eventList = list;
   },
 
