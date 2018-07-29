@@ -17,7 +17,7 @@ class Seeder {
 
     static var events: [Event] {
 
-        let numberOfEvents = 50
+        let numberOfEvents = 200
 
         let dateFormatter: DateFormatter = {
 
@@ -28,18 +28,16 @@ class Seeder {
         }()
 
         let timeIntervals: [(type: Type, start: String, end: String)] = [
-            (type: .wod, start: "07:15", end: "08:15"),
-            (type: .wod, start: "10:00", end: "11:00"),
             (type: .superwod, start: "11:00", end: "12:30"),
             (type: .wod, start: "12:30", end: "13:30"),
-            (type: .mobility, start: "18:00", end: "18:30"),
-            (type: .wod, start: "18:45", end: "19:45"),
-            (type: .wod, start: "20:00", end: "21:00")
+            // (type: .mobility, start: "18:00", end: "18:30"),
+            (type: .wod, start: "18:30", end: "19:15"),
+            (type: .wod, start: "19:30", end: "20:15")
         ]
 
         //dateFormatter.date(from: "2018/05/12 \(timeIntervals[0].start)")!,
         let initialWods: [(type: Type, date: Date, time: String)] = timeIntervals.compactMap {
-            (type: $0.type, date: dateFormatter.date(from: "2018/05/12 \($0.start)")!, time: $0.start)
+            (type: $0.type, date: dateFormatter.date(from: "2018/07/20 \($0.start)")!, time: $0.start)
         }
 
         let calendar = Calendar.autoupdatingCurrent

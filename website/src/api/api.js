@@ -33,7 +33,6 @@ export function fetchEventList(callback) {
   axios
     .get(GET_URL_EVENT_LIST)
     .then(resp => {
-      console.log('Data count' + resp.data.length);
       store.dispatch('setEventList', resp.data);
       callback(resp.data);
     })

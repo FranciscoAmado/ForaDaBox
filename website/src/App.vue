@@ -43,7 +43,6 @@
     components: {},
     computed: {
       list() {
-        console.log("computed.list");
         return this.$store.getters.getEventList;
       },
     },
@@ -72,7 +71,6 @@
 
     mounted () {
       fetchEventList();
-      console.log("mounted");
     }
   }
 </script>
